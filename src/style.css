@@ -66,3 +66,38 @@
         margin: 10px auto;
     }
 }
+
+.add-item-form {
+    padding: 10px;
+}
+
+.close-btn {
+    font-size: 1.7rem !important;
+    line-height: unset;
+    padding: 10px 2px!important;
+    background-color: var(--app-bg);
+}
+
+textarea {
+    width: 100%;
+    border: none;
+    line-height: 1.5;    
+}
+
+.bg-blue {
+    background-color: #1a304d !important;
+    color: var(--app-bg) !important;
+}
+
+.text-red {
+    color: red !important;
+}
+
+.btn-width-50 {
+    width: 50%;
+    font-size: 1.5rem !important;
+}
+
+.btn-width-25 {
+    width: 25%;
+}

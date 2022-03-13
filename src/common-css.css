@@ -232,10 +232,10 @@ body {
 .btn:active {
     background-color: var(--nav-bg);
     transition: all 0.3s;
-    -webkit-transition: ease-in 0.3s;
-    -moz-transition: ease-in 0.3s;
-    -ms-transition: ease-in 0.3s;
-    -o-transition: ease-in 0.3s;
+    -webkit-transition:;
+    -moz-transition:;
+    -ms-transition:;
+    -o-transition:;
 }
 
 .btn:active .btn-fade {
