@@ -1,0 +1,68 @@
+@import url("common-css.css");
+
+.brand-name {
+    line-height: 1.6;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.three-dot {
+    cursor: pointer;
+    font-weight: lighter;
+}
+
+.card-name {
+    font-weight: 400;
+}
+
+.btn-icon {
+    font-size: 4.0rem;
+    margin: 0 6px 0 0;
+    font-weight: normal;
+    color: var(--icon-color);
+}
+
+.btn-text {
+    margin-top: 5px;
+}
+
+.item-text {
+    flex-grow: 2;
+}
+
+.item-actions {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.item-text {
+    padding: 0 5px;
+}
+
+.item-actions .icon {
+    font-size: 1.5rem;
+}
+
+.action {
+    margin: 5px;
+    padding: 5px;
+    line-height: 1.0;
+    flex-grow: 1;
+    flex-basis: 100%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.add-another-card {
+    margin: 10px 20px;
+}
+
+@media (max-width: 600px) {
+    .add-another-card {
+        margin: 10px auto;
+    }
+}
