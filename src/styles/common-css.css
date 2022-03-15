@@ -130,21 +130,21 @@ body {
 }
 
 .text-light-blueGrey {
-    color: #eceff1 !important;
+    color: #eceff1 !important !important;
 }
 
 .bg-white {
-    background-color: #ffffff;
+    background-color: #ffffff !important;
 }
 
 .bg-dark {
-    background-color: #000000;
+    background-color: #000000 !important;
 }
 
 .card {
     width: 35rem;
     max-width: 30rem;
-    height: auto;
+    height: fit-content;
     background-color: var(--card-bg);
     margin: 6px;
 }
@@ -158,10 +158,10 @@ body {
 
 .card-header {
     width: 100%;
-    height: auto;
+    height: fit-content;
     padding: 10px 10px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     background-color: var(--card-header-bg);
 }
@@ -191,7 +191,7 @@ body {
 
 .card-footer {
     width: 100%;
-    height: auto;
+    height: fit-content;
     margin: 25px 0 0 0;
 }
 
@@ -222,7 +222,7 @@ body {
     font-weight: 500;
     width: 100%;
     line-height: 1.9;
-    padding: 5px 10px;
+    padding: 5px 5px;
 }
 
 .btn:hover {

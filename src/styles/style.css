@@ -9,15 +9,25 @@
 .three-dot {
     cursor: pointer;
     font-weight: lighter;
+    padding: 5px;
+}
+
+.three-dot:hover {
+    background-color: var(--btn-hover-color);
+    transition: 0.2s all;
+    -webkit-transition: 0.2s all;
+    -moz-transition: 0.2s all;
+    -ms-transition: 0.2s all;
+    -o-transition: 0.2s all;
 }
 
 .card-name {
     font-weight: 400;
+    cursor: pointer;
 }
 
 .btn-icon {
-    font-size: 4.0rem;
-    margin: 0 6px 0 0;
+    font-size: 2.0rem;
     font-weight: normal;
     color: var(--icon-color);
 }
@@ -28,6 +38,11 @@
 
 .item-text {
     flex-grow: 2;
+}
+
+.item {
+    cursor: pointer !important;
+    display: inline;
 }
 
 .item-actions {
@@ -71,7 +86,7 @@
     padding: 10px;
 }
 
-.close-btn {
+.btn-icons {
     font-size: 1.7rem !important;
     line-height: unset;
     padding: 10px 2px!important;
@@ -79,9 +94,14 @@
 }
 
 textarea {
-    width: 100%;
+    width: 100% !important;
     border: none;
     line-height: 1.5;    
+    font-size: 1.5rem;
+}
+
+.text-field {
+    margin: 10px 0;
 }
 
 .bg-blue {
@@ -100,4 +120,18 @@ textarea {
 
 .btn-width-25 {
     width: 25%;
+    font-size: 1.5rem !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-blue {
+    background-color: #1a304d !important;
+}
+
+.margin-x-8px {
+    margin-left: 8px !important;
+    margin-right: 8px !important; 
 }
