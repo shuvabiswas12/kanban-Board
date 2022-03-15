@@ -16,8 +16,10 @@ export default function CardName(props: { cardName: string, cardId: number | str
     }
 
     function handleEditCardName(e) {
-        editCardName(false);
-        cardDispatch({ type: "CardEdit", value: { editedCardName: initialValue, cardIdNo: cardId } })
+        if (initialValue.trim()) {
+            editCardName(false);
+            cardDispatch({ type: "CardEdit", value: { editedCardName: initialValue, cardIdNo: cardId } })
+        }
     }
 
     function handleCardDelete() {
@@ -30,9 +32,9 @@ export default function CardName(props: { cardName: string, cardId: number | str
             {
                 !isCardNameEdit &&
 
-                <div className='row flex-justify-space-between'>
-                    <p onDoubleClick={() => editCardName(true)} className="text-size-2 card-name text-white" title="Double click to edit the card name">{props.cardName}</p>
-                    <p onClick={() => handleCardDelete()} className="three-dot" title="Delete card"><i className="fa-regular fa-trash-can icon text-light-blueGrey"></i></p>
+                <div className='row flex-justify-space-between' draggable="false" onDragEnd={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}>
+                    <p draggable='false' onDoubleClick={() => editCardName(true)} className="text-size-2 card-name text-white" title="Double click to edit the card name">{props.cardName}</p>
+                    <p draggable='false' onClick={() => handleCardDelete()} className="three-dot" title="Delete card"><i className="fa-regular fa-trash-can icon text-light-blueGrey"></i></p>
                 </div>
             }
 

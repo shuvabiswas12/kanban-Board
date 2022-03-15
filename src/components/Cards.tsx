@@ -1,16 +1,26 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CardItem from './CardItem'
 import CardName from './CardName';
 import AddMoreCard from './AddMoreCard';
 import StateContext from '../StateContext';
 import AddNewItem from './AddNewItem';
+import DispatchContext from '../DispatchContext';
 
 export default function Cards() {
 
+    const [ShouldItemHide, setItemShouldHide] = useState<boolean>(false);
+
     const cardState = useContext(StateContext)
+    const cardDispatch = useContext(DispatchContext);
+
+    let draggedOverCardId: string = "";
+    let draggedOverCardName: string = "";
+    let draggedItem: string = "";
+    let srcCardName: string = "";
+    let srcCardId: string = "";
 
     function dragStart(e, item) {
-        e.dataTransfer.setData('item', item)
+        draggedItem = item;
         setTimeout(() => {
             e.target.style.display = "none";
         }, 0)
@@ -22,18 +32,24 @@ export default function Cards() {
         }, 0)
     }
 
-    function dragOver(e, cardName) {
+    function dragOver(e, cardName, cardId) {
         e.preventDefault()
-        e.dataTransfer.setData('destinationCard', cardName)
+        draggedOverCardId = cardId;
+        draggedOverCardName = cardName;
     }
 
     function drop(e, cardName) {
-        const draggedItem = e.dataTransfer.getData('item');
-        const srcCard = e.dataTransfer.getData('srcCard');
-        const destinationCard = e.dataTransfer.getData('destinationCard');
+        console.log("DraggedItem = " + draggedItem + " SrcCard = " + srcCardName + " and srcCard Id = " + srcCardId + " DestinationCard = " + draggedOverCardName + " and Card Id = " + draggedOverCardId)
+        if (draggedItem && srcCardId !== draggedOverCardId) {
+            setItemShouldHide(() => true);
+            cardDispatch({ type: "ItemDrag", value: { draggedItem: draggedItem, destinationCardId: draggedOverCardId, srcCardId: srcCardId } })
+        }
+
     }
 
-    function dragOn(e, cardName) {
+    function dragOn(e, cardName, cardId) {
+        srcCardName = cardName;
+        srcCardId = cardId;
         e.dataTransfer.setData('srcCard', cardName)
     }
 
@@ -49,12 +65,25 @@ export default function Cards() {
                     cardState.map((card, index) => {
                         return (
                             <div className="card" key={index}>
-                                <div className="card-header">
+                                <div className="card-header" draggable="false" onDragEnd={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}>
                                     <CardName cardName={card.cardName} cardId={card.cardId} />
                                 </div>
-                                <div className="card-body" onDrop={(e) => drop(e, card.cardName)} >
+                                <div className="card-body"
+                                    onDrop={(e) => drop(e, card.cardName)}
+                                    onDrag={(e) => dragOn(e, card.cardName, card.cardId)}
+                                    onDragOver={(e) => { dragOver(e, card.cardName, card.cardId) }}
+                                >
                                     {
-                                        card.cardItems.map((item, position) => <CardItem cardId={card.cardId} itemIndex={position} itemText={item} key={position} />)
+                                        card.cardItems.map(
+                                            (item, position) =>
+                                                <CardItem
+                                                    cardId={card.cardId}
+                                                    itemIndex={position}
+                                                    itemText={item}
+                                                    key={position}
+                                                    onDragStart={(e) => dragStart(e, item)}
+                                                    onDragEnd={(e) => dragEnd(e)}
+                                                />)
                                     }
                                 </div>
                                 <div className="card-footer">

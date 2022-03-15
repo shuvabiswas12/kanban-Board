@@ -91,6 +91,30 @@ function Main() {
         return;
 
       case "ItemDrag":
+        const { draggedItem, destinationCardId, srcCardId } = action.value
+        console.log("DraggedItem = " + draggedItem)
+        console.log("DraggedOverCardId = " + destinationCardId);
+        console.log("srcCardId = " + srcCardId);
+
+        // adding the dragged item to the desired card
+        for (let i = 0; i < draft.length; i++) {
+          if (srcCardId === draft[i].cardId) {
+            continue;
+          }
+          if (draft[i].cardId === destinationCardId) {
+            draft[i].cardItems.push(draggedItem);
+            break;
+          }
+        }
+
+        // removing the dragged item from the src card
+        for (let i = 0; i < draft.length; i++) {
+          if (draft[i].cardId === srcCardId) {
+            let newItems = draft[i].cardItems.filter(item => item !== draggedItem)
+            draft[i].cardItems = newItems;
+            return;
+          }
+        }
         return;
 
       default:

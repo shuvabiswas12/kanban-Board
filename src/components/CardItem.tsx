@@ -14,8 +14,10 @@ function CardItem(props: IMyCardItem) {
     const cardId = props.cardId
 
     function handleEditItem(e) {
-        setEditItem(false)
-        cardDispatch({ type: "ItemEdit", value: { editedText: initialValue, itemIndex: itemIndex, cardId: cardId } })
+        if (initialValue.trim()) {
+            setEditItem(false)
+            cardDispatch({ type: "ItemEdit", value: { editedText: initialValue, itemIndex: itemIndex, cardId: cardId } })
+        }
     }
 
     function handleDeletingCardItem() {
