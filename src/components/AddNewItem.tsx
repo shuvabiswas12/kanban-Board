@@ -9,8 +9,10 @@ export default function AddItem(props: { cardId: string }) {
     const cardDispatch = useContext(DispatchContext);
 
     function handleAddingNewItem() {
-        setAddNewItem(false);
-        cardDispatch({ type: "ItemAdd", value: { cardId: props.cardId, item: newItem } })
+        if (newItem.trim()) {
+            setAddNewItem(false);
+            cardDispatch({ type: "ItemAdd", value: { cardId: props.cardId, item: newItem } })
+        }
     }
 
 
