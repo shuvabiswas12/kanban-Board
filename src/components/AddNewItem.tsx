@@ -12,6 +12,7 @@ export default function AddItem(props: { cardId: string }) {
         if (newItem.trim()) {
             setAddNewItem(false);
             cardDispatch({ type: "ItemAdd", value: { cardId: props.cardId, item: newItem } })
+            setNewItem(() => "");
         }
     }
 
